@@ -2,7 +2,7 @@ function Login(){
     return (
         <>
         <h1 className="abc">
-            hello friends
+            hello aditya
             
         </h1>
         </>
