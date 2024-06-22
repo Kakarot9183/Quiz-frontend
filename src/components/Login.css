@@ -1,0 +1,36 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    background: #33F3FF;
+    border: 3px solid rgb(89, 89, 95);
+    padding-bottom: 30px;
+    width: 25%;
+    
+    
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    gap: 9px;
+    margin-top: 30px;
+}
+.form-check{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 8px;
+
+}
+.button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    gap: 9px;
+    margin-top: 30px;
+
+}
