@@ -1,0 +1,59 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.hover-underline-animation {
+    display: inline-block; /* Display inline block */
+    position: relative; /* Set position relative */
+    cursor: pointer;
+}
+
+.hover-underline-animation:after {
+    content: ''; /* Add content after the element */
+    position: absolute; /* Position absolute for pseudo-element */
+    width: 100%; /* Full width */
+    transform: scaleX(0); /* Initial scale of 0 for underline effect */
+    height: 2px; /* Height of the underline */
+    bottom: 0; /* Align to bottom */
+    left: 0; /* Align to left */
+    background-color: #484848; /* Background color of the underline */
+    color: #484848;
+    transform-origin: bottom right; /* Set transform origin */
+    transition: transform 0.25s ease-out; /* Transition effect for the underline */
+}
+
+.hover-underline-animation:hover:after {
+    transform: scaleX(1); /* Scale the underline on hover */
+    transform-origin: bottom left; /* Set transform origin */
+}
+
+.element {
+    width : 100%;
+}
+
+.login-btn {
+    transition: transform 0.25s ease-out;
+}
+
+.login-btn:hover {
+    background-color: #fff;
+}
+
+.forgot {
+    width: 100%;
+}
+
+.forgot span {
+    cursor: pointer;
+}
