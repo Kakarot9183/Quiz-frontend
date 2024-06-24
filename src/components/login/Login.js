@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import './Login.css'
-import { signUpApi } from '../api/AuthenticationApi';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../security/AuthContext';
 function Login(){
@@ -24,20 +23,14 @@ function Login(){
         setPassword(e.target.value);
     }
 
-    const handleSignup = () => {
-        signUpApi(username, password)
-            .then((response) => {
-                if(response.status === 201) {
-                    navigate('/home');
-                }   
-            }).catch((error) => {
-                console.log(error);
-            });
+    const handleSignup = async () => {
+        if(await authContext.signup(username, password)) {
+            navigate('/home')
+        }
     }
 
-    const handleLogin = () => {
-        // console.log(authContext.login(username, password))
-        if(authContext.login(username, password)) {
+    const handleLogin = async () => {
+        if(await authContext.login(username, password)) {
             navigate('/home');
         }
         

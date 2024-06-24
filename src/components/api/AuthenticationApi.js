@@ -2,7 +2,7 @@ import ApiClient from "./ApiClient"
 
 export const loginApi = (token) => {
     return ApiClient.get('/test', {
-        headers : {Authorization : `Basic ${token}`}
+        headers : {Authorization : token}
     });
 }
 
