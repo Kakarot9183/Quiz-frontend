@@ -4,6 +4,7 @@ function Login(){
 
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
+    const[login, setLogin] = useState(false); 
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -22,10 +23,16 @@ function Login(){
             <div className='login-container'>
                 <div className='login shadow rounded px-5 pt-5 pb-1'>
                     <div className='my-4 mx-2'>
-                        <h3 className='text-center m-0'>Welcome Back</h3>
-                        <p className='fs-6 m-0'>Please enter your details to sign in.</p>
+                        {login ? 
+                        <>
+                            <h3 className='text-center m-0'>Welcome Back</h3>
+                            <p className='fs-6 m-0'>Please enter your details to sign in.</p>
+                        </>
+                         : 
+                        <h3 className='text-center m-0'>Sign Up</h3>}
+                        
                     </div>
-                    <div className="row g-3 align-items-center m-1">
+                    <div className="row g-3 align-items-center m-2">
                         <div className="col-auto">
                         <input
                             type="text"
@@ -36,7 +43,7 @@ function Login(){
                         />
                         </div>
                     </div>
-                    <div className="row g-3 align-items-center m-1">
+                    <div className="row g-3 align-items-center m-2">
                         <div className="col-auto">
                         <input
                             type="password"
@@ -47,20 +54,29 @@ function Login(){
                         />
                         </div>
                     </div>
-                    <div className='d-flex flex-row-reverse forgot p-2'>
-                        <span className='text-decoration-underline mx-1'>
-                            Forgot Password?
-                        </span>
+                    {login && 
+                        <div className='d-flex flex-row-reverse forgot p-2'>
+                            <span className='text-decoration-underline mx-1'>
+                                Forgot Password?
+                            </span>
+                        </div>
+                    }
+                    
+                    <div className='m-4 mb-5'>
+                        {login ? <button type='button' onClick={handleLogin} className='logibfalse-btn btn btn-dark shadow-lg px-4 py-2'>Login</button> : <button type='button' onClick={handleLogin} className='logib-btn btn btn-dark shadow-lg px-4 py-2'>Create Account</button>}
+                        
                     </div>
-                    <div className='m-5'>
-                        <button type='submit' onClick={handleLogin} className='logib-btn btn btn-dark shadow-lg px-4 py-2'>Login</button>
-                    </div>
-                    <div className='mb-2'>
-                        <span>Don't have account yet? </span>
-                        <span className='fw-bold hover-underline-animation'>Sign up</span>
-                    </div>
-
-
+                    {login ? 
+                        <div className='my-2'>
+                            <span>Don't have account yet? </span>
+                            <span className='fw-bold hover-underline-animation' onClick={() => setLogin((value) => !value)}>Sign up</span>
+                        </div>
+                        : 
+                        <div className='my-2'>
+                            <span>Already have an account? </span>
+                            <span className='fw-bold hover-underline-animation' onClick={() => setLogin((value) => !value)}>Login</span>
+                        </div>
+                    }
                 </div>
             </div>
         </>
