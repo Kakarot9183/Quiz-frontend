@@ -1,15 +1,19 @@
 import { useContext, useState } from 'react';
 import './Login.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../security/AuthContext';
 function Login(){
 
     const[username, setUsername] = useState('xpnsn');
     const[name, setName] = useState('');
     const[password, setPassword] = useState('0109');
-    const[login, setLogin] = useState(true); 
+    // const[login, setLogin] = useState(true); 
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
+
+    const [searchParams] = useSearchParams();
+    
+    const login = searchParams.get('mode') === 'login';
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -105,12 +109,12 @@ function Login(){
                     {login ? 
                         <div className='my-2'>
                             <span>Don't have account yet? </span>
-                            <span className='fw-bold hover-underline-animation' onClick={() => setLogin((value) => !value)}>Sign up</span>
+                            <Link to='?mode=signup' className='fw-bold hover-underline-animation link'>Sign up</Link>
                         </div>
                         : 
                         <div className='my-2'>
                             <span>Already have an account? </span>
-                            <span className='fw-bold hover-underline-animation' onClick={() => setLogin((value) => !value)}>Login</span>
+                            <Link to='?mode=login' className='fw-bold hover-underline-animation link'>Login</Link>
                         </div>
                     }
                 </div>
