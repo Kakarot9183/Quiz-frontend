@@ -3,16 +3,7 @@ import Login from "./login/Login";
 import Home from "./home/Home";
 import AuthProvider from "./security/AuthContext";
 import AuthenticatedRoute from "./security/AuthenticatedRoute";
-// function AuthenticatedRoute( {children} ) {
-//     const authContext = useContext(AuthContext);
-//     console.log(authContext.authenticated)
-//     if(authContext.authenticated) {
-//         return children;
-//     } else {
-//         console.log("in authenticated route");
-//         return <Navigate to="/login" />
-//     }
-// }
+import QuizDetails from "./quiz-details/QuizDetails";
 
 function Quiz() {
     return(
@@ -32,6 +23,12 @@ function Quiz() {
                             <AuthenticatedRoute>
                                 <Home />
                             </AuthenticatedRoute>
+                        }></Route>
+
+                        <Route path='/create' element = {
+                            // <AuthenticatedRoute>
+                            // </AuthenticatedRoute>
+                                <QuizDetails />
                         }></Route>
 
                     </Routes>

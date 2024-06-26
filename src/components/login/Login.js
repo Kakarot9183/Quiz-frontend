@@ -29,7 +29,7 @@ function Login(){
 
     const handleSignup = async () => {
         if(await authContext.signup(username, password)) {
-            navigate('/home')
+            navigate('/home');
         }
     }
 
