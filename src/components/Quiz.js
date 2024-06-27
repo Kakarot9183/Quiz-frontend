@@ -3,7 +3,7 @@ import Login from "./login/Login";
 import Home from "./home/Home";
 import AuthProvider from "./security/AuthContext";
 import AuthenticatedRoute from "./security/AuthenticatedRoute";
-import QuizDetails from "./quiz-details/QuizDetails";
+import QuizDetails from "./home/quiz-details/QuizDetails";
 
 function Quiz() {
     return(
@@ -26,9 +26,9 @@ function Quiz() {
                         }></Route>
 
                         <Route path='/create' element = {
-                            // <AuthenticatedRoute>
-                            // </AuthenticatedRoute>
+                            <AuthenticatedRoute>
                                 <QuizDetails />
+                            </AuthenticatedRoute>
                         }></Route>
 
                     </Routes>

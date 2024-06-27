@@ -9,7 +9,6 @@ function Home() {
 
     const onButtonClick = () => {
         navigate('/create');
-        console.log("clicked")
     }
 
     return (
