@@ -3,6 +3,8 @@ import Login from "./login/Login";
 import Home from "./home/Home";
 import AuthProvider, { AuthContext } from "./security/AuthContext";
 import { useContext } from "react";
+import LoginError from "./login/error/LoginError";
+
 // import AuthenticatedRoute from "./security/AuthenticatedRoute";
 function AuthenticatedRoute( {children} ) {
     const authContext = useContext(AuthContext);
@@ -26,6 +28,12 @@ function Quiz() {
                                 <Login />
                             
                         }></Route>
+                        <Route path='/test' element={
+
+                            <LoginError />
+
+                        }></Route>
+
 
                         <Route path='/home' element = {
                             <AuthenticatedRoute>

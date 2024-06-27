@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../security/AuthContext';
 function Login(){
 
-    const[username, setUsername] = useState('xpnsn');
+    const[username, setUsername] = useState('aditya');
     const[name, setName] = useState('');
     const[password, setPassword] = useState('0109');
     const[login, setLogin] = useState(true); 
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
+    const[error, setError] = useState(false);
+    const[errorMessage,setErrorMessage]=useState(null);
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -27,11 +29,19 @@ function Login(){
         if(await authContext.signup(username, password)) {
             navigate('/home')
         }
+        else{
+            setError(true)
+            setErrorMessage("username already exist")
+        }
     }
 
     const handleLogin = async () => {
         if(await authContext.login(username, password)) {
             navigate('/home');
+        }
+        else{
+            setError(true)
+            setErrorMessage("invalid password")
         }
         
     }
@@ -88,6 +98,8 @@ function Login(){
                             className="form-control"
                             placeholder="Password"
                         />
+                        {error && <p>{errorMessage}</p>}
+                        
                         </div>
                     </div>
                     {login && 
@@ -105,12 +117,29 @@ function Login(){
                     {login ? 
                         <div className='my-2'>
                             <span>Don't have account yet? </span>
-                            <span className='fw-bold hover-underline-animation' onClick={() => setLogin((value) => !value)}>Sign up</span>
+                            <span className='fw-bold hover-underline-animation' 
+                            onClick=
+                            {() => 
+                                {
+                                    setLogin((value) => !value)
+                                    setError(false)
+                                }
+                            }
+                            
+                            >Sign up</span>
                         </div>
                         : 
                         <div className='my-2'>
                             <span>Already have an account? </span>
-                            <span className='fw-bold hover-underline-animation' onClick={() => setLogin((value) => !value)}>Login</span>
+                            <span 
+                                className='fw-bold hover-underline-animation' 
+                                onClick={
+                                    () => {
+                                        setLogin((value) => !value)
+                                        setError(false)
+                                    }
+                                }
+                            >Login</span>
                         </div>
                     }
                 </div>
