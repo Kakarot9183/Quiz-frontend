@@ -12,6 +12,8 @@ function Login(){
     const authContext = useContext(AuthContext);
 
     const [searchParams] = useSearchParams();
+    const[passwordError,setPasswordError]=useState(null);
+    const[usernameError,setUsernameError]=useState(null);
     
     const login = searchParams.get('mode') === 'login';
 
@@ -30,12 +32,16 @@ function Login(){
     const handleSignup = async () => {
         if(await authContext.signup(username, password)) {
             navigate('/home');
+        } else {
+            setUsernameError("username already exist")
         }
     }
 
     const handleLogin = async () => {
         if(await authContext.login(username, password)) {
             navigate('/home');
+        } else {
+            setPasswordError("invalid credentials")
         }
         
     }
@@ -81,6 +87,7 @@ function Login(){
                             className="form-control"
                             placeholder="Username"
                         />
+                        {usernameError && <p className='px-1 text-danger m-0 '>{usernameError}</p>}
                         </div>
                     </div>
                     <div className="row g-3 align-items-center m-2">
@@ -92,6 +99,7 @@ function Login(){
                             className="form-control"
                             placeholder="Password"
                         />
+                        {passwordError && <p className='px-1 text-danger m-0 '>{passwordError}</p>}
                         </div>
                     </div>
                     {login && 
@@ -109,12 +117,20 @@ function Login(){
                     {login ? 
                         <div className='my-2'>
                             <span>Don't have account yet? </span>
-                            <Link to='?mode=signup' className='fw-bold hover-underline-animation link'>Sign up</Link>
+                            <Link 
+                                to='?mode=signup' 
+                                className='fw-bold hover-underline-animation link'
+                                onClick={() => setPasswordError(null)}
+                            >Sign up</Link>
                         </div>
                         : 
                         <div className='my-2'>
                             <span>Already have an account? </span>
-                            <Link to='?mode=login' className='fw-bold hover-underline-animation link'>Login</Link>
+                            <Link 
+                                to='?mode=login' 
+                                className='fw-bold hover-underline-animation link'
+                                onClick={() => setUsernameError(null)}
+                            >Login</Link>
                         </div>
                     }
                 </div>
