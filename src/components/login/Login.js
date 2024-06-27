@@ -10,8 +10,10 @@ function Login(){
     const[login, setLogin] = useState(true); 
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
-    const[error, setError] = useState(false);
-    const[errorMessage,setErrorMessage]=useState(null);
+    
+    
+    const[passwordError,setPasswordError]=useState(null);
+    const[usernameError,setUsernameError]=useState(null);
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -30,8 +32,7 @@ function Login(){
             navigate('/home')
         }
         else{
-            setError(true)
-            setErrorMessage("username already exist")
+            setUsernameError("username already exist")
         }
     }
 
@@ -40,8 +41,7 @@ function Login(){
             navigate('/home');
         }
         else{
-            setError(true)
-            setErrorMessage("invalid password")
+            setPasswordError("invalid credentials")
         }
         
     }
@@ -78,8 +78,11 @@ function Login(){
                             </div>
                         </div>
                     }
+                    
                     <div className="row g-3 align-items-center m-2">
                         <div className="col-auto">
+                        
+                        
                         <input
                             type="text"
                             value={username}
@@ -87,6 +90,7 @@ function Login(){
                             className="form-control"
                             placeholder="Username"
                         />
+                        {usernameError && <p className='px-1 text-danger m-0 '>{usernameError}</p>}
                         </div>
                     </div>
                     <div className="row g-3 align-items-center m-2">
@@ -98,7 +102,7 @@ function Login(){
                             className="form-control"
                             placeholder="Password"
                         />
-                        {error && <p>{errorMessage}</p>}
+                        {passwordError && <p className='px-1 text-danger m-0 '>{passwordError}</p>}
                         
                         </div>
                     </div>
@@ -122,7 +126,7 @@ function Login(){
                             {() => 
                                 {
                                     setLogin((value) => !value)
-                                    setError(false)
+                                    setPasswordError(null)
                                 }
                             }
                             
@@ -136,7 +140,7 @@ function Login(){
                                 onClick={
                                     () => {
                                         setLogin((value) => !value)
-                                        setError(false)
+                                        setUsernameError(null)
                                     }
                                 }
                             >Login</span>
