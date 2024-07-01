@@ -3,7 +3,8 @@ import Login from "./login/Login";
 import Home from "./home/Home";
 import AuthProvider from "./security/AuthContext";
 import AuthenticatedRoute from "./security/AuthenticatedRoute";
-import QuizDetails from "./home/quiz-details/QuizDetails";
+import EditQuiz from "./quizzes/edit-quiz/EditQuiz";
+import MyQuizzes from "./quizzes/MyQuizzes";
 
 function Quiz() {
     return(
@@ -25,9 +26,15 @@ function Quiz() {
                             </AuthenticatedRoute>
                         }></Route>
 
-                        <Route path='/create' element = {
+                        <Route path='/quiz/create' element = {
                             <AuthenticatedRoute>
-                                <QuizDetails />
+                                <EditQuiz />
+                            </AuthenticatedRoute>
+                        }></Route>
+
+                        <Route path='/quiz' element = {
+                            <AuthenticatedRoute>
+                                <MyQuizzes />
                             </AuthenticatedRoute>
                         }></Route>
 

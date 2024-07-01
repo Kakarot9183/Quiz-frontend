@@ -12,3 +12,20 @@
   height: 15%;
   width: 15%;
 }
+
+.dropdown-list {
+  width: 10vw;
+  position: absolute;
+  top: 125% !important;
+  margin: 2em;
+  right: 0;
+  left: auto !important;
+}
+
+.drop-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 0 6px;
+  border-color: #000000 transparent transparent transparent;
+}

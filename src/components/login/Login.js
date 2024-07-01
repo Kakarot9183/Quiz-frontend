@@ -2,12 +2,12 @@ import { useContext, useState } from 'react';
 import './Login.css'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../security/AuthContext';
+
 function Login(){
 
-    const[username, setUsername] = useState('xpnsn');
+    const[username, setUsername] = useState('');
     const[name, setName] = useState('');
-    const[password, setPassword] = useState('0109');
-    // const[login, setLogin] = useState(true); 
+    const[password, setPassword] = useState('');
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
 
@@ -16,6 +16,14 @@ function Login(){
     const[usernameError,setUsernameError]=useState(null);
     
     const login = searchParams.get('mode') === 'login';
+
+    const resetState = () => {
+        setUsername('');
+        setName('');
+        setPassword('');
+        setPasswordError(null);
+        setUsernameError(null);
+    }
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -30,7 +38,7 @@ function Login(){
     }
 
     const handleSignup = async () => {
-        if(await authContext.signup(username, password)) {
+        if(await authContext.signup(name, username, password)) {
             navigate('/home');
         } else {
             setUsernameError("username already exist")
@@ -120,7 +128,7 @@ function Login(){
                             <Link 
                                 to='?mode=signup' 
                                 className='fw-bold hover-underline-animation link'
-                                onClick={() => setPasswordError(null)}
+                                onClick={resetState}
                             >Sign up</Link>
                         </div>
                         : 
@@ -129,7 +137,7 @@ function Login(){
                             <Link 
                                 to='?mode=login' 
                                 className='fw-bold hover-underline-animation link'
-                                onClick={() => setUsernameError(null)}
+                                onClick={resetState}
                             >Login</Link>
                         </div>
                     }

@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { loginApi, signUpApi } from "../api/AuthenticationApi";
+import ApiClient from "../api/ApiClient";
 
 export const AuthContext = createContext();
 
@@ -20,11 +21,15 @@ export default function AuthProvider( {children} ) {
                 setUsername(username);
                 setToken(authToken);
                 setAuthenticated(true);
+
+                ApiClient.interceptors.request.use((config) => {
+                    config.headers.Authorization=authToken;
+                    return config;
+                });
+
                 return true;
             } else {
-                setUsername(null);
-                setToken(null);
-                setAuthenticated(false);
+                logout();
                 return false;
             }
         } catch (error) {
@@ -32,22 +37,20 @@ export default function AuthProvider( {children} ) {
         }
     }
 
-    const signup = async (username, password) => {
+    const signup = async (name, username, password) => {
         const authToken = window.btoa(username + ":" + password);
 
         try {
 
-            const response = await signUpApi(username, password);
+            const response = await signUpApi(name, username, password);
 
-            if(response.data === "CREATED") {
+            if(response.status === 201) {
                 setUsername(username);
                 setToken(authToken);
                 setAuthenticated(true);
                 return true;
             } else {
-                setUsername(null);
-                setToken(null);
-                setAuthenticated(false);
+                logout();
                 return false;
             }
         } catch (error) {
@@ -56,8 +59,14 @@ export default function AuthProvider( {children} ) {
 
     }
 
+    const logout = () => {
+        setUsername(null);
+        setToken(null);
+        setAuthenticated(false);
+    }
+
     return (
-        <AuthContext.Provider value={{login, username, authenticated, token, signup}} >
+        <AuthContext.Provider value={{login, username, authenticated, token, signup, logout}} >
             {children}
         </AuthContext.Provider>
     );

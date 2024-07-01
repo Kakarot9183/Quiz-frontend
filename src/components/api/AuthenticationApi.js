@@ -6,6 +6,6 @@ export const loginApi = (token) => {
     });
 }
 
-export const signUpApi = (username, password) => {
-    return ApiClient.post('/sign-up', {username, password})
+export const signUpApi = (name, username, password) => {
+    return ApiClient.post('/sign-up', {name, username, password})
 }
