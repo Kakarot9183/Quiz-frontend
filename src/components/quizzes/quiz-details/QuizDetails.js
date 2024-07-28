@@ -2,13 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createQuizApi } from "../../api/QuizApi";
 
-function QuizDetails() {
+function QuizDetails({quizName, setQuizName, description, setDescription}) {
     
-    const [quizName, setQuizName] = useState('');
-    const [description, setDescription] = useState('');
-
     const navigate = useNavigate();    
+    
 
+    
     function handleQuizName(e) {
         setQuizName(e.target.value);
     }
@@ -17,11 +16,14 @@ function QuizDetails() {
         setDescription(e.target.value);
     }
 
-    async function createQuiz() {
-        const response = await createQuizApi(quizName, description);
-        if(response.status === 201) {
-            console.log("Quiz created")
-        }
+    // async function createQuiz() {
+    //     const response = await createQuizApi(quizName, description);
+    //     if(response.status === 201) {
+    //         console.log("Quiz created")
+    //     }
+    // }
+    function createQuiz() {
+        navigate('/quiz/edit/b3889c');
     }
 
     function cancelProcess() {

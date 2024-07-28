@@ -5,6 +5,7 @@ import AuthProvider from "./security/AuthContext";
 import AuthenticatedRoute from "./security/AuthenticatedRoute";
 import EditQuiz from "./quizzes/edit-quiz/EditQuiz";
 import MyQuizzes from "./quizzes/MyQuizzes";
+import CreateQuiz from "./quizzes/create-quiz/CreateQuiz";
 
 function Quiz() {
     return(
@@ -27,6 +28,12 @@ function Quiz() {
                         }></Route>
 
                         <Route path='/quiz/create' element = {
+                            <AuthenticatedRoute>
+                                <CreateQuiz />
+                            </AuthenticatedRoute>
+                        }></Route>
+
+                        <Route path='/quiz/edit/:id' element = {
                             <AuthenticatedRoute>
                                 <EditQuiz />
                             </AuthenticatedRoute>

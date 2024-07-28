@@ -1,0 +1,35 @@
+.question-container {
+    /* height: 5em; */
+    width : 18em;
+    background: #eeeeee;
+    box-shadow: 10px 10px 50px #b4b4b4, -10px -10px 50px #ffffff;
+}
+
+.question-cards {
+    display: flex;
+    flex-direction: column;
+    background: #CED4DA;
+    overflow-y: scroll;
+    gap: 2em;
+}
+
+.question-cards::-webkit-scrollbar {
+    width: 0.5em;
+}
+  
+  /* Track */
+.question-cards::-webkit-scrollbar-track {
+    background: #eeeeee; 
+    border-radius: 1em;
+}
+
+/* Handle */
+.question-cards::-webkit-scrollbar-thumb {
+    background: #C1C1C1; 
+    border-radius: 1em;
+}
+
+/* Handle on hover */
+.question-cards::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

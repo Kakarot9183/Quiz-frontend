@@ -10,9 +10,16 @@ function MyQuizzes() {
     const navigate = useNavigate();
     const [quiz, setQuiz] = useState([]);
 
-    const onButtonClick = () => {
+    const createNewQuiz = () => {
         navigate('create');
     }
+
+    const editQuizById = (id) => {
+        // console.log(id);
+        navigate(`edit/${id}`);
+    }
+
+
 
     useEffect(() => {
         const request = async () => {
@@ -34,7 +41,7 @@ function MyQuizzes() {
                     <button 
                     type="button" 
                     className="btn btn-dark button rounded-pill" 
-                    onClick={onButtonClick}
+                    onClick={createNewQuiz}
                     >
                         <img alt={add} src={add} />
                         <span className="button-text fw-bold p-2">Create Quiz</span>
@@ -49,8 +56,8 @@ function MyQuizzes() {
                         {quiz.map((e) => (
                             <div className="list-group-item py-4 d-flex" key={e.uuid} >
                                 <span className="my-auto me-auto align-items-center">{e.name}</span>
-                                <btn className="btn btn-light mx-2 py-2 px-4" >Edit</btn>
-                                <btn className="btn btn-dark mx-2 py-2 px-4" >Delete</btn>
+                                <button className="btn btn-light mx-2 py-2 px-4" onClick={() => editQuizById(e.uuid)}>Edit</button>
+                                <button className="btn btn-dark mx-2 py-2 px-4" >Delete</button>
                             </div>
                         ))}
                     </ul>
