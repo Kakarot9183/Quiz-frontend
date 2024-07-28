@@ -8,9 +8,9 @@ function Sidebar({details, setDetails, create}) {
         setDetails(e.target.value);
     }
 
-    useEffect(() => {
-        const request = 
-    })
+    // useEffect(() => {
+    //     const request = 
+    // })
     
 
     return(

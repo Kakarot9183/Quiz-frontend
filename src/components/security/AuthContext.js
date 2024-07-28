@@ -9,6 +9,7 @@ export default function AuthProvider( {children} ) {
     const [username, setUsername] = useState(null);
     const [token, setToken] = useState(null);
     const [authenticated, setAuthenticated] = useState(false);
+    console.log(token,"token")
 
     const login = async (username, password) => {
         const authToken = 'Basic ' + window.btoa(username + ":" + password); 
