@@ -5,9 +5,7 @@ import { createQuizApi } from "../../api/QuizApi";
 function QuizDetails({quizName, setQuizName, description, setDescription}) {
     
     const navigate = useNavigate();    
-    
 
-    
     function handleQuizName(e) {
         setQuizName(e.target.value);
     }
@@ -16,14 +14,12 @@ function QuizDetails({quizName, setQuizName, description, setDescription}) {
         setDescription(e.target.value);
     }
 
-    // async function createQuiz() {
-    //     const response = await createQuizApi(quizName, description);
-    //     if(response.status === 201) {
-    //         console.log("Quiz created")
-    //     }
-    // }
-    function createQuiz() {
-        navigate('/quiz/edit/b3889c');
+    async function createQuiz() {
+        const response = await createQuizApi(quizName, description);
+        if(response.status === 201) {
+            console.log("Quiz created")
+            navigate(`/quiz/edit/${response.data.uuid}`);
+        }
     }
 
     function cancelProcess() {

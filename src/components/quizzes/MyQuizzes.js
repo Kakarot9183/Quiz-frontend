@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../header/NavBar";
 import add from "./../../resources/svg/add-svgrepo-com.svg"
 import { useEffect, useState } from "react";
-import { getQuizzes } from "../api/QuizApi";
+import { deleteQuiz, getQuizzes } from "../api/QuizApi";
 import "./MyQuizzes.css"
 
 function MyQuizzes() {
@@ -19,6 +19,9 @@ function MyQuizzes() {
         navigate(`edit/${id}`);
     }
 
+    const deleteQuizById = async (id) => {
+        const response = await deleteQuiz(id);
+    }
 
 
     useEffect(() => {
@@ -57,7 +60,7 @@ function MyQuizzes() {
                             <div className="list-group-item py-4 d-flex" key={e.uuid} >
                                 <span className="my-auto me-auto align-items-center">{e.name}</span>
                                 <button className="btn btn-light mx-2 py-2 px-4" onClick={() => editQuizById(e.uuid)}>Edit</button>
-                                <button className="btn btn-dark mx-2 py-2 px-4" >Delete</button>
+                                <button className="btn btn-dark mx-2 py-2 px-4" onClick={() => deleteQuizById(e.uuid)}>Delete</button>
                             </div>
                         ))}
                     </ul>

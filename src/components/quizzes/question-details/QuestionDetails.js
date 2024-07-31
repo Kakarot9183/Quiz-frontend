@@ -5,7 +5,7 @@ import "./QuestionDetails.css"
 
 function QuestionDetails() {
 
-    const [questionName, setQuizName] = useState('');
+    const [questionName, setQuestionName] = useState('');
     const [description, setDescription] = useState('');
     const [option1, setOption1] = useState('');
     const [option2, setOption2] = useState('');
@@ -16,7 +16,7 @@ function QuestionDetails() {
     const navigate = useNavigate();    
 
     function handleQuestionTitle(e) {
-        setQuizName(e.target.value);
+        setQuestionName(e.target.value);
     }
 
     function handleOption1Change(e) {

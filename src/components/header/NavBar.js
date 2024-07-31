@@ -29,13 +29,11 @@ function NavBar() {
                                 <Link to="/quiz" className="nav-link active fs-5 mx-3" aria-current="page">My Quizzes</Link>
                             </li>
                         </ul>
-                        <div className="d-flex justify-content-center mx-5" style={{width : "5%"}} data-bs-toggle="dropdown">
+                        <div className="d-flex justify-content-center mx-5" style={{width : "75px"}} data-bs-toggle="dropdown">
                             <img 
                                 alt="pfp"
                                 src={userPhoto}
                                 style={{
-                                    width: '50%',
-                                    height: '50%', // Optional, can be omitted for equal width and height
                                     borderRadius: '50%',
                                     objectFit: 'cover',
                                     overflow: 'hidden'

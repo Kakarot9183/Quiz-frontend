@@ -11,3 +11,7 @@ export const getQuizByID = (id) => {
 export const getQuizzes = () => {
     return ApiClient.get('/quiz');
 }
+
+export const deleteQuiz = (id) => {
+    return ApiClient.delete(`/quiz/${id}`);
+}

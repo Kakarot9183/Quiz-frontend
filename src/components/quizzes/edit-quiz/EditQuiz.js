@@ -12,6 +12,9 @@ function EditQuiz() {
     const [details, setDetails] = useState('question');
 
     const {id} = useParams();
+    
+    const [quizName, setQuizName] = useState('');
+    const [description, setDescription] = useState('');
 
     useEffect(() => {
         const request = async () => {
@@ -21,9 +24,6 @@ function EditQuiz() {
         }
         request();
     }, []);
-    
-    const [quizName, setQuizName] = useState('');
-    const [description, setDescription] = useState('');
 
     return (
         <>
@@ -38,9 +38,7 @@ function EditQuiz() {
                                 setQuizName={setQuizName}
                                 description={description}
                                 setDescription={setDescription}
-                            /> : <QuestionDetails 
-
-                            />
+                            /> : <QuestionDetails />
                         }
                     </div>
                 </div>

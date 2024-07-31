@@ -18,13 +18,17 @@ export default function AuthProvider( {children} ) {
 
             const response = await loginApi(authToken);
 
+            console.log(response);
+
             if(response.data === "SUCCESS") {
                 setUsername(username);
                 setToken(authToken);
                 setAuthenticated(true);
 
+                console.log(authToken,"asdff")
                 ApiClient.interceptors.request.use((config) => {
                     config.headers.Authorization=authToken;
+                    console.log(config,"config")
                     return config;
                 });
 
@@ -49,6 +53,13 @@ export default function AuthProvider( {children} ) {
                 setUsername(username);
                 setToken(authToken);
                 setAuthenticated(true);
+
+                ApiClient.interceptors.request.use((config) => {
+                    config.headers.Authorization=authToken;
+                    console.log(config,"config")
+                    return config;
+                });
+
                 return true;
             } else {
                 logout();

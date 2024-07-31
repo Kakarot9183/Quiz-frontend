@@ -3,14 +3,9 @@
   margin-bottom: 3em;
 }
 
-.button {
-  width: 15%;
-  font-size: 1.2em;
-}
-
 .button img {
-  height: 15%;
-  width: 15%;
+  height: 20px;
+  width: 20px;
 }
 
 .dropdown-list {
